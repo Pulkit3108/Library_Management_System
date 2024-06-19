@@ -1,0 +1,87 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Publisher>
+
+@{
+    ViewData["Title"] = "Publisher's List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .auth__header {
+        padding: 5vh 1rem calc(3vh + 27px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f0;
+        background-image: linear-gradient(#3280e4, #584dc3);
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        box-shadow: 0 3px 5px rgba(#000, 0.3);
+    }
+
+        .auth__header:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+    .auth__logo {
+        position: relative;
+        z-index: 18;
+        padding: 10px;
+        border: 1px solid darkblue;
+        border-radius: 100%;
+        box-shadow: 0 2px 7px rgba(#000, 0.15);
+        overflow: hidden;
+    }
+
+    h4 {
+        margin-left: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #DDD;
+    }
+
+    thead {
+        background-color: #111;
+        color: white;
+    }
+</style>
+<div class="auth__header">
+    <div class="auth__logo">
+        <img height="70" src="/imgs/books.png" alt="">
+    </div>
+    <h4>Publisher's List</h4>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublisherName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PublisherId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PublisherId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PublisherId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

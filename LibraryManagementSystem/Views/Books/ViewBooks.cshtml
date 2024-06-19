@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+@{
+    ViewData["Title"] = "All Books";
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+<style>
+    .cardStyle {
+        background-color: #f0f0f0;
+        background-image: linear-gradient(#bdc3c7, #2c3e50);
+        color: white;
+    }
+</style>
+<div class="container mt-4">
+    <form style="display:flex">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchString" />
+        <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" />
+    </form>
+    <br />
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-auto mb-4">
+                <div class="card cardStyle" style="width: 18rem;">
+                    <img class="card-img-top" height="250" src="@Html.DisplayFor(modelItem => item.BookImageUrl)" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.BookTitle)</h5>
+                        <p class="card-text">No. of copies available: @Html.DisplayFor(modelItem => item.NumberOfCopies)</p>
+                        <p class="card-text">Author: @Html.DisplayFor(modelItem => item.Author.AuthorName)</p>
+                        <p class="card-text">Category: @Html.DisplayFor(modelItem => item.BookCategory)</p>
+                        <form asp-controller="LendRequests" asp-action="RequestToLend" asp-route-bookId=@item.BookId>
+                            <input class="btn btn-outline-warning my-2 my-sm-0" type="submit" value="Request to Borrow" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

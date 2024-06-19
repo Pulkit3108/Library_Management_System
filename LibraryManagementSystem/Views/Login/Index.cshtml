@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+@model IEnumerable<LibraryManagementSystem.Models.Account>
+
+<style>
+
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.auth__header{
+    padding: 5vh 1rem calc(3vh + 27px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    background-image: linear-gradient(#3280e4, #584dc3);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    box-shadow: 0 3px 5px rgba(#000, 0.3);
+}
+
+.auth__header:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+}
+
+.auth__logo {
+    position: relative;
+    z-index: 18;
+    padding: 10px;
+    border: 1px solid darkblue;
+    border-radius: 100%;
+    box-shadow: 0 2px 7px rgba(#000, 0.15);
+    overflow: hidden;
+}
+
+.auth__body {
+    padding-bottom: 2rem;
+}
+
+.auth__form {
+    min-width: 280px;
+    max-width: 340px;
+    margin: auto;
+    margin-top: -40px;
+    padding: 0 10px;
+    position: relative;
+    z-index: 9;
+}
+.auth__form_body{
+      padding: 0.7rem 1.5rem 35px;
+      border-radius: 0.5rem;
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 4px 10px rgba(#000, 0.15);
+}
+
+.auth__form_title {
+      font-size: 1.3rem;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+}
+
+.auth__form_actions {
+      text-align: center;
+      padding: 0 2rem;
+      margin-top: -5px;
+}
+
+.auth__form_actions_btn {
+    border-radius: 30px;
+    box-shadow: 0 2px 12px rgba(#3280e4, 0.5);
+    color: #3280e4;
+}
+.passd{
+    margin-left: 5px;
+}
+    
+</style>
+
+<div class="auth">
+    <div class="auth__header">
+        <div class="auth__logo">
+            <img height="90" src="/imgs/books.png" alt="">
+        </div>
+    </div>
+    <div class="auth__body">
+        <form method="post" asp-controller="Login" asp-action="Index" class="auth__form" autocomplete="off">
+            <div class="auth__form_body">
+                <h3 class="auth__form_title">Sign in</h3>
+                <div>
+                    <div class="form-group">
+                        <label class="text-uppercase small">Username</label>
+                        <input class="form-control" placeholder="Enter username" type="text" name="userName" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-uppercase small">Password </label>
+                        <input name="userPassword" required="" type="password" class="form-control passd" placeholder="Password">
+                    </div>
+                </div>
+                <div class="auth__form_actions">
+                    <input class="btn btn-outline-primary my-2 my-sm-0 auth__form_actions_btn" type="submit" value="LOGIN" />
+                </div>
+                <p>By clicking Register, you agree on our <a asp-controller="Home" asp-action="Terms">Terms & Conditions</a>.</p>
+                <center style="color: red; margin:0; font-size:smaller">
+                    @ViewBag.Message
+                </center>
+            </div>
+        </form>
+    </div>
+</div>
