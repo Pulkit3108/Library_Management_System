@@ -1,52 +1,63 @@
-# Library_Management_System
-Library Management System is an Online Library Web Application made using **ASP.NET MVC**. It provides an easy-to-handle and automated system. It also provides various features and an interface for maintaining librarians’ records, students’ history of issues, and fines. The admin can easily update, delete and insert data in the database with this application. Can View all his past *Records*.
-### Features
-> For Admin
- * Can *Approve* or *Reject* the request for any book that is requested.
- * Can perform *CRUD* operations on Account, Book, Author, and Publisher tables.
- * Can View all the past *Records* of each user.
-> For User
-* Can View all the books and *Request* them.
-* Can View all the issued books and *Return* them.
-* Can View all his past *Records*.
+# Library Management System
 
-> Landing Page
+An educational ASP.NET Core MVC web application for managing a library catalogue, accounts, lending requests, returns, and fines.
 
-![Screenshot (13)](https://user-images.githubusercontent.com/109417065/184586767-abf63457-8d92-4038-8891-5298462bc32a.png)
+> This repository is a learning project, not a production-ready library system. Its authentication implementation is a prototype and must not be used with real user accounts or data.
 
-> Login Page
+## Features
 
-![Screenshot (14)](https://user-images.githubusercontent.com/109417065/184586807-bf4eaca1-b5dc-40aa-ad89-e5bf9b9aeda7.png)
+- **Administrators:** manage books, authors, publishers, and accounts; approve or decline lending requests; track issued books and lending history.
+- **Users:** browse the catalogue, request available books, view issued books, return books, and review lending history.
 
-> View Books Page
+## Screenshots
 
-![Screenshot (15)](https://user-images.githubusercontent.com/109417065/184586844-1dd204b1-53ab-43dd-a9b3-246f185425a5.png)
-## Getting Started
+| Landing page | Sign in | Book catalogue |
+| --- | --- | --- |
+| ![Library landing page](Docs/screenshots/landing-page.png) | ![Library sign-in page](Docs/screenshots/sign-in.png) | ![Library book catalogue](Docs/screenshots/book-catalogue.png) |
+
+## Technology
+
+- .NET 5 and ASP.NET Core MVC
+- Entity Framework Core 5 with SQL Server
+- Razor views, Bootstrap, and jQuery
+
+## Project Layout
+
+```text
+.
+├── LibraryManagementSystem.sln
+└── LibraryManagementSystem/
+    ├── Controllers/  # MVC routes for catalogue, accounts, and lending
+    ├── Models/       # Entity Framework models, context, and repositories
+    ├── Migrations/   # Tracked Entity Framework migration history
+    ├── Views/        # Razor pages and role-specific layouts
+    └── wwwroot/      # Static images, styles, scripts, and front-end libraries
+```
+
+## Run Locally
+
 ### Prerequisites
-Download and install the below mentioned softwares -
-* Microsoft Visual Studio Community 2022 (64-bit) Version **17.3.0**
-* Microsoft SQL Server Management Studio Version **18.2.1**
-* .NET Framework Version **5.0.17**
 
-### Installation
-Install the below-mentioned packages inside your Visual Studio by navigating to 
-> **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution**
+- .NET 5 SDK
+- SQL Server or SQL Server LocalDB
 
-* Microsoft.EntityFrameworkCore Version **5.0.17**
-* Microsoft.EntityFrameworkCore.Design Version **5.0.17**
-* Microsoft.EntityFrameworkCore.Tools Version **5.0.17**
-* Microsoft.EntityFrameworkCore.SqlServer Version **5.0.17**
+```bash
+dotnet restore LibraryManagementSystem.sln
+dotnet run --project LibraryManagementSystem/LibraryManagementSystem.csproj
+```
 
-### Configuration
-Enter the below commands inside your console. You can open the console by navigating to
-> **Tools** > **NuGet Package Manager** > **Package Manager Console**
-```sh
-Add-Migration <Migration Name>
-```
-```sh
-Update-Database
-```
-Make sure to update [appsettings.json](https://github.com/KDI-pulkit/Library_Management_System/blob/master/LibraryManagementSystem/appsettings.json) with the **Database Name** you want to give.
-```sh
-"DBConnection": "Server=localhost;Database=<Database Name>;Trusted_Connection=True;"
-```
+The default connection string is in `LibraryManagementSystem/appsettings.json` and targets a local SQL Server database named `LMS_DB` using Windows integrated authentication. Update it for your local database; do not commit connection strings containing credentials.
+
+### Database State
+
+The repository contains one Entity Framework migration that alters an existing schema, not a complete initial migration or seed dataset. A fresh-database bootstrap is therefore not verified. Before running the application against a new database, create and validate an initial schema migration or restore a compatible database.
+
+## Development Notes
+
+- .NET 5 is end-of-support. Treat a framework and package upgrade as a separate, tested modernization task.
+- The current login flow stores and compares plain-text passwords and includes a hard-coded administrator branch. Do not deploy it or use it with real credentials.
+- No license has been selected. Do not assume permission to copy, modify, or redistribute the project.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
