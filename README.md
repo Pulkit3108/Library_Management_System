@@ -9,7 +9,7 @@ An educational ASP.NET Core MVC web application for managing a library catalogue
 - **Administrators:** manage books, authors, publishers, and accounts; approve or decline lending requests; track issued books and lending history.
 - **Users:** browse the catalogue, request available books, view issued books, return books, and review lending history.
 
-## Screenshots
+## Application Preview
 
 | Landing page | Sign in | Book catalogue |
 | --- | --- | --- |
